@@ -1,1 +1,71 @@
 
+*{
+    box-sizing:border-box ;
+    padding:0;
+    margin:0;
+}
+
+body {
+    
+}
+.main{
+display:grid;
+width:100%;
+grid-auto-flow:row;
+grid-template-columns:1fr 1fr 1fr;
+grid-template-rows:1fr 1fr 1fr;
+
+height:100%;
+    
+    
+}
+.box{
+    padding:10px;
+    background-color:#efc2ef;
+    margin:20px;
+    text-align:center ;
+    width:80px;
+    height:90px;
+    
+
+}
+
+.box.one.active,.box.two.active,.box.three.active,.box.four.active,.box.five.active,.box.six.active{
+
+  animation:animate 2s ease 1;
+     
+
+}
+
+@keyframes animate{
+  0%{
+  
+      transform: skewY(0);
+      
+  }
+  50%{
+      filter:opacity(1%);
+      transform: skewY(75deg);
+  }
+  75%{
+     filter:opacity(1%);
+      
+  }
+  
+  
+   100%{
+       
+      filter:opacity(100%);
+      
+      
+      
+  }
+  
+    
+}
+
+
+
+
+
+  
