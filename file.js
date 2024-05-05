@@ -1,48 +1,43 @@
-window.onload=()=>{
+window.onload = () => {
+    let allBoxes = document.querySelectorAll(".box");
+    let colorArray = [];
+    let clickedBoxes = [];
 
-let allBoxes = document.querySelectorAll(".box")
+    let randomColor = () => {
+        let random = Math.floor(Math.random() * 4);
+        let array = ["red", "blue", "yellow", "coral"];
+        return array[random];
+    };
 
- let boxOne = document.querySelector(".box.one");
- let boxTwo = document.querySelector(".box.two"); 
- let boxThree= document.querySelector(".box.three");
- let boxFour= document.querySelector(".box.four");
- let boxFive = document.querySelector(".box.five");
-let boxSix = document.querySelector(".box.six");
+    allBoxes.forEach((box) => {
+        box.addEventListener("click", () => {
+            if (clickedBoxes.includes(box)) {
+                // If box is already clicked, return
+                return;
+            }
 
+            let currentColor = randomColor();
+            colorArray.push(currentColor);
+            box.style.backgroundColor = `${currentColor}`;
+            clickedBoxes.push(box);
 
-
-
-let randomColor=()=>{
-let random = Math.floor(Math.random() * 5)
-let array = ["red","blue","yellow","green","coral"]
-    
-    return array[random]
-}
-
-
-let colorArray = [];
-   
-  allBoxes.forEach((box)=>{
-  box.addEventListener("click",()=>{
-  if(colorArray.length >= 1 && colorArray[0] === colorArray[1]){
-      alert("You win")
-  }
-  let currentColor = randomColor()
-  colorArray.push(currentColor)
-  box.classList.add("active")
-  
- box.style.backgroundColor = `${currentColor}`
- 
- console.log(colorArray )
-           
-       })
-   })
-   
-   
-   
-   
-    
-    
-    
-    
-}
+            if (clickedBoxes.length === 2) {
+                // Compare the colors of the two clicked boxes
+                let color1 = clickedBoxes[0].style.backgroundColor;
+                let color2 = clickedBoxes[1].style.backgroundColor;
+                
+                if (color1 === color2) {
+                    // If colors match, hide the boxes and reset clickedBoxes array
+                    clickedBoxes.forEach((clickedBox) => {
+                        clickedBox.style.display = "none";
+                    });
+                    alert("You win!");
+                    location.reload();
+                } else {
+                    // If colors don't match, reset clickedBoxes array
+                    clickedBoxes = [];
+                }
+            }
+        });
+    });
+};
