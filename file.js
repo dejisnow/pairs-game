@@ -4,13 +4,14 @@ window.onload = () => {
     let clickedBoxes = [];
 
     let randomColor = () => {
-        let random = Math.floor(Math.random() * 4);
-        let array = ["red", "blue", "yellow", "coral"];
+        let random = Math.floor(Math.random() * 5);
+        let array = ["0fef2d", "#2aeb0f", "yellow", "coral","#eed2ef","#aab220"];
         return array[random];
     };
 
     allBoxes.forEach((box) => {
         box.addEventListener("click", () => {
+        box.classList.add("active")
             if (clickedBoxes.includes(box)) {
                 // If box is already clicked, return
                 return;
@@ -29,10 +30,10 @@ window.onload = () => {
                 if (color1 === color2) {
                     // If colors match, hide the boxes and reset clickedBoxes array
                     clickedBoxes.forEach((clickedBox) => {
-                        clickedBox.style.display = "none";
+                        
                     });
-                    alert("You win!");
-                    location.reload();
+                    alert("Match Found");
+            
                 } else {
                     // If colors don't match, reset clickedBoxes array
                     clickedBoxes = [];
